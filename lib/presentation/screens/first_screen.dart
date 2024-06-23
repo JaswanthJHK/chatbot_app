@@ -25,7 +25,7 @@ class FirstScreen extends StatelessWidget {
                   );
                 },
                 child: const Text(
-                  "Good Evening",
+                  "Good Evenin",
                   style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -40,7 +40,6 @@ class FirstScreen extends StatelessWidget {
               //       );
               //     },
               //     child: const Text("start"))
-             
             ],
           ),
         ),
