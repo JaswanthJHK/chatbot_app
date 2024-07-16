@@ -16,6 +16,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        centerTitle: true,
       ),
       body: ChatWidget(apiKey: widget.apiKey),
     );

@@ -11,6 +11,13 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
+  String greeting = '';
+  @override
+  void initState() {
+    super.initState();
+    updateTime();
+  }
+
   final linearColor = const LinearGradient(
     colors: [Colors.blueAccent, Colors.redAccent],
   );
@@ -32,8 +39,9 @@ class _FirstScreenState extends State<FirstScreen> {
                         Rect.fromLTWH(0, 0, bounds.width, bounds.height),
                       );
                     },
-                    child: const Text(
-                      "Good Evening",
+                    child: Text(
+                      // "Good Evening",
+                      greeting,
                       style:
                           TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                     ),
@@ -41,9 +49,24 @@ class _FirstScreenState extends State<FirstScreen> {
                 ],
               ),
             ),
-            const Spacer(
-              flex: 1,
-            ),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              child: Center(
+                child: Text(
+                  "Meet Chatbot, Your personalized AI assistant That understands your needs and provide insightful responses.",
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                    fontSize: 23,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            )),
+            // const Spacer(
+            //   flex: 1,
+            // ),
             Container(
               width: double.infinity,
               height: 250,
@@ -60,7 +83,7 @@ class _FirstScreenState extends State<FirstScreen> {
                     topRight: Radius.circular(30)),
                 color: Color.fromARGB(255, 12, 18, 20),
               ),
-              child:  Column(
+              child: Column(
                 children: [
                   Row(
                     children: [
@@ -68,9 +91,15 @@ class _FirstScreenState extends State<FirstScreen> {
                         padding: EdgeInsets.all(15.0),
                         child: InkWell(
                           onTap: () {
-                         //   Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(apiKey:, title: title),))
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChatScreen(
+                                    apiKey: widget.apiKey, title: "checkk"),
+                              ),
+                            );
                           },
-                          child: Text(
+                          child: const Text(
                             'Ask anything...',
                             style: TextStyle(
                                 fontSize: 25,
@@ -88,5 +117,22 @@ class _FirstScreenState extends State<FirstScreen> {
         ),
       ),
     );
+  }
+
+  void updateTime() {
+    DateTime now = DateTime.now();
+    if (now.hour >= 0 && now.hour < 12) {
+      setState(() {
+        greeting = 'Good Morning';
+      });
+    } else if (now.hour >= 12 && now.hour < 18) {
+      setState(() {
+        greeting = 'Good Afternoon';
+      });
+    } else {
+      setState(() {
+        greeting = 'Good Night';
+      });
+    }
   }
 }
